@@ -22,28 +22,28 @@
  */
 
 /**
- * Run browser tests with dalak
- * 
+ * Run browser tests with dalek
+ *
  * ## Getting Started
  * This plugin requires Grunt `~0.4.1`
- * 
+ *
  * If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
- * 
+ *
  * ```bash
  * npm install grunt-dalek --save-dev
  * ```
- * 
+ *
  * Once the plugin has been installed, it may be enabled inside your Gruntfile with this line of JavaScript:
- * 
+ *
  * ```javascript
  * grunt.loadNpmTasks('grunt-dalek');
  * ```
- * 
+ *
  * ## The "dalek" task
- * 
+ *
  * ### Overview
  * In your project's Gruntfile, add a section named `dalek` to the data object passed into `grunt.initConfig()`.
- * 
+ *
  * ```javascript
  * grunt.initConfig({
  *   dalek: {
@@ -56,42 +56,42 @@
  *   },
  * })
  * ```
- * 
+ *
  * ### Options
- * 
+ *
  * #### options.dalekfile
  * Type: `Boolean`
  * Default: `true`
- * 
+ *
  * Grunt should load the config options from your Dalekfile
- * 
+ *
  * #### options.browser
  * Type: `Array`
  * Default: `['phantomjs']`
- * 
+ *
  * The browsers you would like to test
  * Note: For other browsers than PhantomJS, you need to have the Dalek browser plugin installed.
- * 
+ *
  * #### options.reporter
  * Type: `Array`
  * Default: `null`
- * 
+ *
  * The reporters you would like to invoke
  * Note: For other reporters than the grunt console output, you need to have the corresponding Dalek reporter plugin installed.
- * 
+ *
  * #### options.advanced
  * Type: `Object`
  * Default: `null`
- * 
+ *
  * All the options you else would define in your Dalekfile.
  * This overwrites the contents of your Dalekfile.
- * 
+ *
  * ## Examples
- * 
+ *
  * ### Configuration Example
- * 
+ *
  * Basic example of a Grunt config containing the dalek task.
- * 
+ *
  * ```javascript
  * grunt.initConfig({
  *   dalek: {
@@ -99,19 +99,19 @@
  *       src: ['test/example/test-github.js']
  *     }
  *   }
- * 
+ *
  * });
- * 
- * // Loads tasks located in the tasks directory. 
+ *
+ * // Loads tasks located in the tasks directory.
  * grunt.loadTasks('tasks');
- * 
+ *
  * grunt.registerTask('default', ['dalek']);
  * ```
- * 
+ *
  * ### Multiple Files
- * 
+ *
  * Running dalekjs against multiple files.
- * 
+ *
  * ```javascript
  * dalek: {
  *   dist: {
@@ -119,9 +119,9 @@
  *   }
  * }
  * ```
- * 
+ *
  * ### Specifying Options
- * 
+ *
  * ```javascript
  * dalek: {
  *     options: {
@@ -254,7 +254,7 @@ module.exports = function(grunt) {
         message += data.elapsedTime.minutes ? data.elapsedTime.minutes + ' min' : '';
         message += data.elapsedTime.seconds ? Math.round(data.elapsedTime.seconds * Math.pow(10, 2)) / Math.pow(10, 2) + ' sec' : '';
         message += ')';
-        
+
         if (!grunt.option('verbose')) {
           grunt.log.writeln();
           logFailedAssertions();
@@ -312,7 +312,7 @@ module.exports = function(grunt) {
     // log test started
     dalek.reporterEvents.on('report:test:started', function(data) {
       currentTest = data.name;
-      grunt.verbose.write(currentTest + '...');
+      grunt.log.write(currentTest + '...');
     });
 
     // log test finished
@@ -320,14 +320,10 @@ module.exports = function(grunt) {
       // Log errors if necessary, otherwise success.
       if (!data.status) {
         // list assertions
-        if (grunt.option('verbose')) {
-          grunt.log.error();
-          logFailedAssertions();
-        } else {
-          grunt.log.write('F'.red);
-        }
+        grunt.log.error();
+        logFailedAssertions();
       } else {
-        grunt.verbose.ok().or.write('.');
+        grunt.log.ok();
       }
     });
 
