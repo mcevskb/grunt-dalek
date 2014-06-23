@@ -1,6 +1,6 @@
 {
   "name": "grunt-dalek",
-  "description": "Run browser tests with dalakjs",
+  "description": "Run browser tests with dalekjs",
   "homepage": "https://github.com/dalekjs/grunt-dalek",
   "version": "0.2.0",
   "author": {
@@ -34,7 +34,7 @@
     "test": "grunt test"
   },
   "dependencies": {
-    "dalekjs": "~0.0.8"
+    "dalekjs": "mcevskb/dalek"
   },
   "devDependencies": {
     "grunt": "~0.4.4",
@@ -55,7 +55,7 @@
     "chai": "~1.9.1",
     "load-grunt-tasks": "~0.4.0",
     "time-grunt": "~0.3.1",
-    "dalek-build-tools": "~0.0.2"
+    "dalek-build-tools": "mcevskb/dalek-build-tools"
   },
   "peerDependencies": {
     "grunt": "~0.4.1"
